@@ -4,7 +4,7 @@ import FormComponents from "./components/FormComponents";
 import List from "./components/List";
 import Axios from "axios";
 
-const URL = "https://condom-server.herokuapp.com";  //Read only
+const URL = "https://condom-server.herokuapp.com"; //Read only
 
 class App extends Component {
   constructor(props) {
@@ -20,9 +20,9 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    Axios.get(URL+"/todos").then(response => {
+    Axios.get(URL + "/todos").then(response => {
       console.log(response);
-      this.setState({todos:response.data});
+      this.setState({ todos: response.data });
     });
   };
 
@@ -33,23 +33,23 @@ class App extends Component {
   onSubmitMessage(e) {
     // ป้องกันเปลี่ยนหน้า
     e.preventDefault();
-    Axios.post(URL+"/todos", {
+    Axios.post(URL + "/todos", {
       name: this.state.message,
       complete: false
     }).then(response => {
       let oldState = this.state.todos;
       oldState.push(response.data);
-      this.setState({todos: oldState});
+      this.setState({ todos: oldState });
     });
   }
 
-  onCheckbox(index, id){
+  onCheckbox(index, id) {
     let check = this.state.todos[index].complete;
-    Axios.patch(URL+"/todos/"+id,{complete: !check}).then(response=>{
+    Axios.patch(URL + "/todos/" + id, { complete: !check }).then(response => {
       let oldState = this.state.todos;
       oldState[index].complete = !check;
-      this.setState({todos: oldState});  
-  });
+      this.setState({ todos: oldState });
+    });
   }
   render() {
     return (

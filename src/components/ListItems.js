@@ -6,7 +6,6 @@ class ListItem extends Component {
       <React.Fragment>
         {todos.map((item, index) => (
           <div
-            onChange={() => this.props.onCheckbox(index, item.id)}
             key={item.id}
             style={{
               backgroundColor: "#a9c8f9",
@@ -20,7 +19,11 @@ class ListItem extends Component {
               paddingBottom: 19
             }}
           >
-            <input type="checkbox"  checked={item.complete}/> {item.name}
+            <input 
+              type="checkbox" 
+              checked={item.complete}
+              onChange={() => this.props.onCheckbox(index, item.id)}
+              /> {item.name}
           </div>
         ))}
       </React.Fragment>
