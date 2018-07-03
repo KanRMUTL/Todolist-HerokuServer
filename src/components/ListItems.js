@@ -23,7 +23,8 @@ class ListItem extends Component {
               type="checkbox" 
               checked={item.complete}
               onChange={() => this.props.onCheckbox(index, item.id)}
-              /> {item.name}
+              /> 
+              {item.complete ? <s>{item.name}</s>: item.name}
           </div>
         ))}
       </React.Fragment>
