@@ -42,6 +42,7 @@ class App extends Component {
       oldState.push(response.data);
       this.setState({ todos: oldState });
     });
+    this.setState({ message: "" });
   }
 
   onCheckbox(index, id) {
@@ -53,10 +54,10 @@ class App extends Component {
     });
   }
 
-  onDeleteItem(id){
+  onDeleteItem(id, index) {
     Axios.delete(URL + "/todos/" + id).then(response => {
       let oldState = this.state.todos;
-      oldState.get(response.data)
+      delete oldState[index];
       this.setState({ todos: oldState });
     });
   }
@@ -74,13 +75,15 @@ class App extends Component {
         }}
       >
         <HeaderComponents />
-        <List 
-          todos={this.state.todos} 
+        <List
+          todos={this.state.todos}
           onCheckbox={this.onCheckbox}
-          onDeleteItem={this.onDeleteItem}/>
+          onDeleteItem={this.onDeleteItem}
+        />
         <FormComponents
           onChangeMessage={this.onChangeMessage}
           onSubmitMessage={this.onSubmitMessage}
+          message={this.state.message}
         />
       </div>
     );

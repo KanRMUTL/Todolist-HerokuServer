@@ -6,12 +6,23 @@ class FormComponents extends Component {
   }
   render() {
     return (
-      <div style={{ margin: 2 }}>
+      <div
+        style={{
+          margin: 7,
+          background: "#BBDEFB"
+        }}
+      >
         <form onSubmit={this.props.onSubmitMessage} style={{ display: "flex" }}>
           <input
             type="text"
-            style={{ flex: 9, height: 30 }}
+            style={{
+              flex: 9,
+              height: 30,
+              borderRadius: 5,
+              border: "1px solid rgb(49, 132, 214)"
+            }}
             onChange={this.props.onChangeMessage}
+            value={this.props.message}
           />
           <button
             type="submit"

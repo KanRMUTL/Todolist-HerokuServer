@@ -9,27 +9,30 @@ class ListItem extends Component {
           <div
             key={item.id}
             style={{
-              backgroundColor: "#a9c8f9",
-              borderColor: "#ccc",
+              backgroundColor: "#448AFF",
+              borderColor: "rgb(68, 137, 255)",
               borderWidth: 1,
               borderStyle: "solid",
               borderRadius: 5,
               margin: 2,
               padding: 5,
               paddingTop: 10,
-              paddingBottom: 19
+              paddingBottom: 19,
+              fontSize: 25,
+              color: "#fff"
             }}
           >
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               checked={item.complete}
               onChange={() => this.props.onCheckbox(index, item.id)}
-              /> 
-              {item.complete ? <s>{item.name}</s>: item.name}
-              <DeleteButton
-                id={item.id}
-                onDeleteItem = {this.props.onDeleteItem}  
-              />
+            />
+            {item.complete ? <s>{item.name}</s> : item.name}
+            <DeleteButton
+              id={item.id}
+              index={index}
+              onDeleteItem={this.props.onDeleteItem}
+            />
           </div>
         ))}
       </React.Fragment>
