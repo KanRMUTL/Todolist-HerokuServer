@@ -17,6 +17,7 @@ class App extends Component {
     this.onChangeMessage = this.onChangeMessage.bind(this);
     this.onSubmitMessage = this.onSubmitMessage.bind(this);
     this.onCheckbox = this.onCheckbox.bind(this);
+    this.onDeleteItem = this.onDeleteItem.bind(this);
   }
 
   componentDidMount = () => {
@@ -51,6 +52,14 @@ class App extends Component {
       this.setState({ todos: oldState });
     });
   }
+
+  onDeleteItem(id){
+    Axios.delete(URL + "/todos/" + id).then(response => {
+      let oldState = this.state.todos;
+      oldState.get(response.data)
+      this.setState({ todos: oldState });
+    });
+  }
   render() {
     return (
       <div
@@ -65,7 +74,10 @@ class App extends Component {
         }}
       >
         <HeaderComponents />
-        <List todos={this.state.todos} onCheckbox={this.onCheckbox} />
+        <List 
+          todos={this.state.todos} 
+          onCheckbox={this.onCheckbox}
+          onDeleteItem={this.onDeleteItem}/>
         <FormComponents
           onChangeMessage={this.onChangeMessage}
           onSubmitMessage={this.onSubmitMessage}

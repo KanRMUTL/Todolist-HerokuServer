@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import DeleteButton from "./DeleteButton";
 class ListItem extends Component {
   render() {
     let todos = this.props.todos; // สร้างตัวแปรมาไม่ให้งงตอนวนลูป
@@ -25,6 +26,10 @@ class ListItem extends Component {
               onChange={() => this.props.onCheckbox(index, item.id)}
               /> 
               {item.complete ? <s>{item.name}</s>: item.name}
+              <DeleteButton
+                id={item.id}
+                onDeleteItem = {this.props.onDeleteItem}  
+              />
           </div>
         ))}
       </React.Fragment>
