@@ -17,8 +17,8 @@ class DeleteButton extends Component {
           border: "2px solid #fff",
           color: "#fff",
           borderRadius: 5,
-          position: "absolute",
-          right: 500
+          right: 40
+
         }}
       >
         Delete
